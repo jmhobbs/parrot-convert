@@ -40,9 +40,14 @@
     </nav>
     <div class="container">
       {% if not slack_rendered %}
-      <form action="/" method="POST" enctype="multipart/form-data">
+      <h1>Image to Parrot Art Converter</h1>
+      <p>Works best on simple line art with very few colors.</p>
+      <form action="/" method="POST" enctype="multipart/form-data" class="well">
+        <div class="form-group">
         <input type="file" name="file" />
-        <button class="btn btn-primary">Convert To Parrots</button>
+        <p class="help-block">(gif, png or jpg, 1mb max)</p>
+        </div>
+        <button class="btn btn-success">Convert To Parrots</button>
       </form>
       {% else %}
       <h1>PARROT PARTY!</h1>
