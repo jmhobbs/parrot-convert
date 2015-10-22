@@ -29,7 +29,7 @@ def render_parrots(s):
 
     s = s.encode('utf8')
 
-    s = s.replace(" ", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA50yFcIg/parrotspacer.png" />')
+    s = s.replace(":invisibleparrot:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA50yFcIg/parrotspacer.png" />')
     s = s.replace(":parrot:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTAx6Ctp7A/parrot.gif" />')
     s = s.replace(":rightparrot:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA1X9dfUg/rightparrot.gif" />')
     s = s.replace(":shuffleparrot:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA2n8Mr3A/shuffleparrot.gif" />')

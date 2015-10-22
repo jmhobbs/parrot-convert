@@ -55,22 +55,45 @@ def register_views(app):
             row_number = 0
             for row in used:
                 if row_number == 0:
-                    replace_map.append((row[0], ':parrot:'))
+                    replace_map.append((row[0], ':pt:'))
                 elif row_number == 1:
-                    replace_map.append((row[0], ':middleparrot:'))
+                    replace_map.append((row[0], ':mp:'))
                 elif row_number == 2:
-                    replace_map.append((row[0], ':rightparrot:'))
+                    replace_map.append((row[0], ':rp:'))
                 elif row_number % 2 == 0:
-                    replace_map.append((row[0], ':shuffleparrot:'))
+                    replace_map.append((row[0], ':sp:'))
                 else:
-                    replace_map.append((row[0], ':oldtimeyparrot:'))
+                    replace_map.append((row[0], ':otp:'))
                 row_number += 1
 
-            parrot_rendered = "\n".join(map(lambda x: multiple_replace(x, *replace_map), rendered.split("\n")))
-            parrot_rendered.replace(" ", "      ")
+            parrot_rendered = map(str.rstrip, map(lambda x: multiple_replace(x, *replace_map), rendered.split("\n")))
+
+            # Remove blank lines
+            for line in parrot_rendered:
+                if len(line) == 0:
+                    parrot_rendered.pop(0)
+                else:
+                    break
+            for line in reversed(parrot_rendered):
+                if len(line) == 0:
+                    parrot_rendered.pop()
+                else:
+                    break
+
+            parrot_rendered = "\n".join(parrot_rendered)
+            parrot_rendered = parrot_rendered.replace(" ", ":ip:")
+
+            html_parrots = parrot_rendered.replace(":ip:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA50yFcIg/parrotspacer.png" />')
+            html_parrots = html_parrots.replace(":pt:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTAx6Ctp7A/parrot.gif" />')
+            html_parrots = html_parrots.replace(":rp:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA1X9dfUg/rightparrot.gif" />')
+            html_parrots = html_parrots.replace(":sp:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA2n8Mr3A/shuffleparrot.gif" />')
+            html_parrots = html_parrots.replace(":otp:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA3F9M9JA/oldtimeyparrot.gif" />')
+            html_parrots = html_parrots.replace(":mp:", '<img src="http://dropit.velvetcache.org.s3.amazonaws.com/jmhobbs/NTA4zPBpvA/middleparrot.gif" />')
+            html_parrots = "<br/>".join(html_parrots.split("\n"))
 
             return render_template("index.html",
-                                   slack_rendered=parrot_rendered
+                                   slack_rendered=parrot_rendered,
+                                   html_parrots=html_parrots
                                    )
         else:
             return render_template("index.html")

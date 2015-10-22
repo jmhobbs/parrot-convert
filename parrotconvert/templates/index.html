@@ -23,7 +23,8 @@
         padding-top: 70px;
       }
       #preview img {
-        width: 15px;
+        width: 20px;
+        margin: 0 1px;
       }
       textarea {
         width: 100%;
@@ -51,7 +52,7 @@
       </form>
       {% else %}
       <h1>PARROT PARTY!</h1>
-      <div id="preview">{{ slack_rendered|render_parrots|safe }}</div>
+      <div id="preview">{{ html_parrots|safe }}</div>
       <h2>Slack Code</h2>
       <pre class="well">{{ slack_rendered }}</pre>
       {% endif %}
